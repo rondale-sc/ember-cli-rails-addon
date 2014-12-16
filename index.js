@@ -3,7 +3,7 @@ var path = require('path');
 
 var lockfileNames = {
   pre: 'preBuild.lock',
-  post: 'postBuild.unlock'
+  post: 'postBuild.lock'
 };
 
 module.exports = {
