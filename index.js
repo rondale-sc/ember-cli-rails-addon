@@ -1,11 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 
-var lockfileNames = {
-  pre: 'preBuild.lock',
-  post: 'postBuild.lock'
-};
-
 module.exports = {
   name: 'ember-cli-rails-addon',
   included: function(app) {
