@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-rails-addon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Addon for configuring ember-cli-rails (the ruby gem) with the ember app(s) it wraps.",
   "main": "index.js",
   "scripts": {
