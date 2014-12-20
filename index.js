@@ -7,7 +7,7 @@ module.exports = {
     app.options.storeConfigInMeta = false;
     if (process.env.SUPPRESS_JQUERY === 'true') {
       var index = app.legacyFilesToAppend.indexOf(app.bowerDirectory + '/jquery/dist/jquery.js');
-      
+
       app.legacyFilesToAppend.splice(index, 1);
     }
   },
