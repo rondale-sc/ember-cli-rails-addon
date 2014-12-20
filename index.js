@@ -5,6 +5,11 @@ module.exports = {
   name: 'ember-cli-rails-addon',
   included: function(app) {
     app.options.storeConfigInMeta = false;
+    if (process.env.SUPPRESS_JQUERY === 'true') {
+      var index = app.legacyFilesToAppend.indexOf(app.bowerDirectory + '/jquery/dist/jquery.js');
+
+      app.legacyFilesToAppend.splice(index, 1);
+    }
   },
   preBuild: function(result) {
     if(!fs.existsSync(lockfile = this.lockfilePath())) {
