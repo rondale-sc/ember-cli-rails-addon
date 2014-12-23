@@ -41,8 +41,17 @@ module.exports = {
     }
   },
 
+  warnMissingDependencyChecker: function() {
+    var dependencies = this.project.dependencies();
+
+    if (!dependencies['ember-cli-dependency-checker']) {
+      console.warn('Usage of "ember-cli-dependency-checker" is strongly advised to ensure your project cache is in sync with the project\'s requirements.');
+    }
+  },
+
   init: function() {
     this.monkeyPatchBuilderBuild();
+    this.warnMissingDependencyChecker();
   },
 
   included: function(app) {
