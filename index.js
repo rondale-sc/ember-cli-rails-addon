@@ -3,7 +3,6 @@ var path = require('path');
 
 module.exports = {
   name: 'ember-cli-rails-addon',
-
   /*
      This fixes an issue with the ember-cli Builder.prototype.build
      implementation for 0.1.3 and 0.1.4. The bug was fixed in
@@ -56,6 +55,11 @@ module.exports = {
 
   included: function(app) {
     app.options.storeConfigInMeta = false;
+
+    if (process.env.DISABLE_FINGERPRINTING === 'true') {
+      app.options.fingerprint.enabled = false;
+    }
+
     if (process.env.SUPPRESS_JQUERY === 'true') {
       var index = app.legacyFilesToAppend.indexOf(app.bowerDirectory + '/jquery/dist/jquery.js');
 
