@@ -2,6 +2,7 @@
   "name": "ember-cli-rails-addon",
   "version": "0.0.7",
   "description": "Addon for configuring ember-cli-rails (the ruby gem) with the ember app(s) it wraps.",
+  "repository": "https://github.com/rondale-sc/ember-cli-rails-addon",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
