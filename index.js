@@ -60,10 +60,15 @@ module.exports = {
       app.options.fingerprint.enabled = false;
     }
 
-    if (process.env.SUPPRESS_JQUERY === 'true') {
-      var index = app.legacyFilesToAppend.indexOf(app.bowerDirectory + '/jquery/dist/jquery.js');
+    if (process.env.EXCLUDE_EMBER_ASSETS) {
+      var excludeEmberAssets = process.env.EXCLUDE_EMBER_ASSETS;
+      var excludeRegex = new RegExp("(?:" + excludeEmberAssets.replace(",", "|") + ")\\.js$");
+      var excludeAssets = app.legacyFilesToAppend.filter(function(asset){ return excludeRegex.test(asset); });
 
-      app.legacyFilesToAppend.splice(index, 1);
+      excludeAssets.forEach(function(asset){
+        var index = app.legacyFilesToAppend.indexOf(asset);
+        app.legacyFilesToAppend.splice(index, 1);
+      });
     }
   },
   preBuild: function(result) {
