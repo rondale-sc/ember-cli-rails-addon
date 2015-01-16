@@ -15,6 +15,10 @@ module.exports = {
     this.warnMissingDependencyChecker();
   },
 
+  buildError: function(error) {
+    fs.writeFileSync(this.errorFilePath(), error.stack)
+  },
+
   included: function(app) {
     app.options.storeConfigInMeta = false;
 
@@ -34,9 +38,8 @@ module.exports = {
     }
   },
   preBuild: function(result) {
-    if(!fs.existsSync(lockfile = this.lockfilePath())) {
-      fs.openSync(lockfile, 'w');
-    }
+    if(!fs.existsSync(lockfile = this.lockfilePath())) { fs.openSync(lockfile, 'w'); }
+    if(fs.existsSync(errorFile = this.errorFilePath())) { fs.unlinkSync(errorFile); }
   },
   postBuild: function(result){
     if(fs.existsSync(lockfile = this.lockfilePath())) {
@@ -45,5 +48,8 @@ module.exports = {
   },
   lockfilePath: function() {
     return path.join(process.cwd(), 'tmp', 'build.lock');
+  },
+  errorFilePath: function() {
+    return path.join(process.cwd(), 'tmp', 'error.txt');
   }
 };
