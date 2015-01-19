@@ -38,11 +38,11 @@ module.exports = {
     }
   },
   preBuild: function(result) {
-    if(!fs.existsSync(lockfile = this.lockfilePath())) { fs.openSync(lockfile, 'w'); }
-    if(fs.existsSync(errorFile = this.errorFilePath())) { fs.unlinkSync(errorFile); }
+    if(!fs.existsSync(var lockfile = this.lockfilePath())) { fs.openSync(lockfile, 'w'); }
+    if(fs.existsSync(var errorFile = this.errorFilePath())) { fs.unlinkSync(errorFile); }
   },
   postBuild: function(result){
-    if(fs.existsSync(lockfile = this.lockfilePath())) {
+    if(fs.existsSync(var lockfile = this.lockfilePath())) {
       fs.unlinkSync(lockfile);
     }
   },
