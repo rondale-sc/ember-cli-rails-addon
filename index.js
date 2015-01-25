@@ -13,6 +13,7 @@ module.exports = {
 
   init: function() {
     this.warnMissingDependencyChecker();
+    this.ensureTmp();
   },
 
   buildError: function(error) {
@@ -38,18 +39,31 @@ module.exports = {
     }
   },
   preBuild: function(result) {
-    if(!fs.existsSync(var lockfile = this.lockfilePath())) { fs.openSync(lockfile, 'w'); }
-    if(fs.existsSync(var errorFile = this.errorFilePath())) { fs.unlinkSync(errorFile); }
+    var lockFile = this.lockFilePath();
+    var errorFile = this.errorFilePath();
+    if(!fs.existsSync(lockFile)) { fs.openSync(lockFile, 'w'); }
+    if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
   postBuild: function(result){
-    if(fs.existsSync(var lockfile = this.lockfilePath())) {
-      fs.unlinkSync(lockfile);
+    var lockFile = this.lockFilePath();
+    if(fs.existsSync(lockFile)) {
+      fs.unlinkSync(lockFile);
     }
   },
-  lockfilePath: function() {
-    return path.join(process.cwd(), 'tmp', 'build.lock');
+
+  ensureTmp: function() {
+    var dir = this.tmpDir();
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+  },
+  tmpDir: function() {
+    path.join(process.cwd(), 'tmp');
+  },
+  lockFilePath: function() {
+    return path.join(this.tmpDir(), 'build.lock');
   },
   errorFilePath: function() {
-    return path.join(process.cwd(), 'tmp', 'error.txt');
+    return path.join(this.tmpDir(), 'error.txt');
   }
 };
