@@ -38,15 +38,18 @@ module.exports = {
     }
   },
   preBuild: function(result) {
-    if(!fs.existsSync(var lockfile = this.lockfilePath())) { fs.openSync(lockfile, 'w'); }
-    if(fs.existsSync(var errorFile = this.errorFilePath())) { fs.unlinkSync(errorFile); }
+    var lockFile = this.lockFilePath();
+    var errorFile = this.errorFilePath();
+    if(!fs.existsSync(lockFile)) { fs.openSync(lockFile, 'w'); }
+    if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
   postBuild: function(result){
-    if(fs.existsSync(var lockfile = this.lockfilePath())) {
-      fs.unlinkSync(lockfile);
+    var lockFile = this.lockFilePath();
+    if(fs.existsSync(lockFile)) {
+      fs.unlinkSync(lockFile);
     }
   },
-  lockfilePath: function() {
+  lockFilePath: function() {
     return path.join(process.cwd(), 'tmp', 'build.lock');
   },
   errorFilePath: function() {
