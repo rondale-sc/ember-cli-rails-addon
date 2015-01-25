@@ -58,7 +58,7 @@ module.exports = {
     }
   },
   tmpDir: function() {
-    path.join(process.cwd(), 'tmp');
+    return path.join(process.cwd(), 'tmp');
   },
   lockFilePath: function() {
     return path.join(this.tmpDir(), 'build.lock');
