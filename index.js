@@ -13,6 +13,7 @@ module.exports = {
 
   init: function() {
     this.warnMissingDependencyChecker();
+    this.ensureTmp();
   },
 
   buildError: function(error) {
@@ -49,10 +50,20 @@ module.exports = {
       fs.unlinkSync(lockFile);
     }
   },
+
+  ensureTmp: function() {
+    var dir = this.tmpDir();
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+  },
+  tmpDir: function() {
+    path.join(process.cwd(), 'tmp');
+  },
   lockFilePath: function() {
-    return path.join(process.cwd(), 'tmp', 'build.lock');
+    return path.join(this.tmpDir(), 'build.lock');
   },
   errorFilePath: function() {
-    return path.join(process.cwd(), 'tmp', 'error.txt');
+    return path.join(this.tmpDir(), 'error.txt');
   }
 };
