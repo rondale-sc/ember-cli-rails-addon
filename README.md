@@ -10,4 +10,4 @@ responsible for the following
 - Creating lockfiles that `ember-cli-rails` tracks to ensure that requests halt
   until EmberCLI has had a chance to fully build
 - Write build errors to a file so that `ember-cli-rails` can display them
-  properly [under developmen]
+  properly [under development]
