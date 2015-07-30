@@ -24,6 +24,7 @@ module.exports = {
     app.options.storeConfigInMeta = false;
 
     if (process.env.DISABLE_FINGERPRINTING === 'true') {
+      app.options.fingerprint = app.options.fingerprint || {};
       app.options.fingerprint.enabled = false;
     }
 
