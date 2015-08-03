@@ -22,6 +22,7 @@ module.exports = {
 
   included: function(app) {
     app.options.storeConfigInMeta = false;
+    app.options.minifyJS = false;
 
     if (process.env.DISABLE_FINGERPRINTING === 'true') {
       app.options.fingerprint = app.options.fingerprint || {};
