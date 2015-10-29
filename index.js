@@ -1,4 +1,5 @@
 var fs = require('fs');
+var fsExtra = require('fs-extra');
 var path = require('path');
 
 module.exports = {
@@ -22,6 +23,8 @@ module.exports = {
 
   included: function(app) {
     app.options.storeConfigInMeta = false;
+    app.options.SRI = app.options.SRI || {};
+    app.options.SRI.enabled = false;
 
     if (process.env.DISABLE_FINGERPRINTING === 'true') {
       app.options.fingerprint = app.options.fingerprint || {};
@@ -46,7 +49,13 @@ module.exports = {
     if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
   postBuild: function(result){
+    fsExtra.copySync(
+      result.directory + '/index.html',
+      result.directory + '/assets/index.html'
+    );
+
     var lockFile = this.lockFilePath();
+
     if(fs.existsSync(lockFile)) {
       fs.unlinkSync(lockFile);
     }

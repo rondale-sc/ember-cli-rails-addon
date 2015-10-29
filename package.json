@@ -11,5 +11,8 @@
     "ember-addon"
   ],
   "author": "Jonathan Jackson",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^0.26.0"
+  }
 }

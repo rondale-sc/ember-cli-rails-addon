@@ -11,3 +11,9 @@ responsible for the following
   until EmberCLI has had a chance to fully build
 - Write build errors to a file so that `ember-cli-rails` can display them
   properly
+- Exposes `dist/index.html` to Rails' asset pipeline in order to survive the
+  cleanup after `rake assets:clean`
+- Disabled [Subresource Integrity][SRI], since the asset pipeline URLs no longer
+  match the URLs the SRI hashes were generated against.
+
+[SRI]: https://github.com/jonathanKingston/ember-cli-sri#what-is-it
