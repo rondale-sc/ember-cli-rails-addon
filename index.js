@@ -59,6 +59,11 @@ module.exports = {
     if(fs.existsSync(lockFile)) {
       fs.unlinkSync(lockFile);
     }
+
+    fsExtra.copySync(
+      result.directory + '/index.html',
+      result.directory + '/assets/index.html'
+    );
   },
 
   ensureTmp: function() {
