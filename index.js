@@ -22,6 +22,7 @@ module.exports = {
   },
 
   included: function(app) {
+    app.options.minifyJS = false;
     app.options.storeConfigInMeta = false;
     app.options.SRI = app.options.SRI || {};
     app.options.SRI.enabled = false;

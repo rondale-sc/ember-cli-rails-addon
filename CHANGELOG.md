@@ -1,6 +1,12 @@
 master
 ------
 
+* Disable EmberCLI minification (closes [thoughtbot/ember-cli-rails#123][123] and
+  [thoughtbot/ember-cli-rails#124][124])
+
+[123]: https://github.com/thoughtbot/ember-cli-rails/pull/123
+[124]: https://github.com/thoughtbot/ember-cli-rails/pull/124
+
 0.0.13
 ------
 
