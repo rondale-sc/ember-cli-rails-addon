@@ -1,0 +1,14 @@
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+language: node_js
+node_js:
+- '4.1'
+- '0.12'
+- '0.10'
+
+notifications:
+  email: false
