@@ -1,10 +1,12 @@
 master
 ------
 
+* Introduce file in `app/initializers` to setup Rails CSRF integration [#19]
 * Prepend Sprockets path to EmberCLI assets.
   Default fingerprinting to no generate `MD5` hash when building in
   `development`.  [#17].
 
+[#19]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/19
 [#17]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/17
 
 0.0.13
