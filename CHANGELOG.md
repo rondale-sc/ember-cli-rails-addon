@@ -1,6 +1,7 @@
 master
 ------
 
+* Don't fingerprint assets when running `ember test` from Rails.
 * Introduce file in `app/initializers` to setup Rails CSRF integration [#19]
 * Prepend Sprockets path to EmberCLI assets.
   Default fingerprinting to no generate `MD5` hash when building in

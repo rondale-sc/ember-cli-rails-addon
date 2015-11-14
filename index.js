@@ -33,7 +33,7 @@ module.exports = {
     app.options.storeConfigInMeta = false;
     softSet(app.options, 'fingerprint', {});
 
-    if (typeof process.env.RAILS_ENV !== 'undefined') {
+    if (app.env !== 'test' && typeof process.env.RAILS_ENV !== 'undefined') {
       var origin = process.env.ASSET_HOST ||
                    process.env.CDN_HOST ||
                    app.options.origin ||
