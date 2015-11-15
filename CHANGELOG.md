@@ -1,6 +1,9 @@
 master
 ------
 
+0.5.0
+-----
+
 * Don't fingerprint assets when running `ember test` from Rails.
 * Introduce file in `app/initializers` to setup Rails CSRF integration [#19]
 * Prepend Sprockets path to EmberCLI assets.
