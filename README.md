@@ -5,18 +5,8 @@ EmberCLI applications the Rails applications serve.
 
 This addon is responsible for:
 
-- preprending Sprockets-ready paths to asset URLs. Unless already specified,
-  the addon will default to prepending `${HOST}/assets/${NAME}/`, where `NAME`
-  is determined by the `name` specified in the application's `package.json`,
-  and `HOST` is determined in the following order:
-
-  1. `process.env.ASSET_HOST` (usually set for [Rails' Asset Pipeline][asset-host])
-  1. `process.env.CDN_HOST` (usually set for Rails' Asset Pipeline)
-  1. `app.options.origin` (see [ember-cli-sri][origin])
-
-[asset-host]: https://robots.thoughtbot.com/dns-cdn-origin#making-it-work-with-rails
-[origin]: https://github.com/jonathanKingston/ember-cli-sri#configure
-
+- preprending Sprockets-ready paths to asset URLs. Read the [configuration]
+  section to learn how to hook into the Asset Pipeline's `asset_host`.
 - setting expected build variables without the user having to manipulate their
   EmberCLI app's `ember-cli-build.js`
 - creating lockfiles that `ember-cli-rails` tracks to ensure that requests halt
@@ -24,5 +14,27 @@ This addon is responsible for:
 - writing build errors to a file so that `ember-cli-rails` can display them
   as Rails errors.
 
+[configuration]: #configuration
 [ember-cli-rails]: https://github.com/thoughtbot/ember-cli-rails
 [SRI]: https://github.com/jonathanKingston/ember-cli-sri#what-is-it
+
+## Configuration
+
+* `prepend` - This value will be used to generate the proper URL for
+  EmberCLI-generated assets. For an app named `frontend`, with `prepend` set
+  to `https://example.com`, the resulting URLs will be prepended with
+  `https://example.com/assets/frontend`:
+
+```js
+// ember-cli-build.js
+
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    'ember-cli-rails': {
+      prepend: 'https://example.com',
+    }
+  });
+
+  // ...
+};
+```

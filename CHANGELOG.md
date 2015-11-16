@@ -1,6 +1,10 @@
 master
 ------
 
+* No longer infer `fingerprint.prepend` domain from environment variables.
+  Instead, expose `app.options['ember-cli-rails'].prepend` configuration
+  value.
+
 0.5.0
 -----
 

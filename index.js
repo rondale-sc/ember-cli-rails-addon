@@ -1,6 +1,7 @@
 var fs = require('fs');
 var fsExtra = require('fs-extra');
 var path = require('path');
+var urlJoin = require('url-join');
 
 function softSet(object, key, value) {
   object = object || {};
@@ -32,21 +33,19 @@ module.exports = {
   included: function(app) {
     app.options.storeConfigInMeta = false;
     softSet(app.options, 'fingerprint', {});
+    softSet(app.options, 'ember-cli-rails', {});
+    var addonOptions = app.options['ember-cli-rails'];
 
     if (app.env !== 'test' && typeof process.env.RAILS_ENV !== 'undefined') {
-      var origin = process.env.ASSET_HOST ||
-                   process.env.CDN_HOST ||
-                   app.options.origin ||
-                   '';
+      var assetHostWithProtocol = addonOptions.prepend || '';
+      var prepend = urlJoin(assetHostWithProtocol, 'assets', app.name);
+
+      if (prepend.slice(-1) !== '/') {
+        prepend += '/';
+      }
 
       softSet(app.options.fingerprint, 'enabled', true);
-      softSet(app.options.fingerprint, 'prepend', [
-          origin,
-          '/assets/',
-          app.name,
-          '/',
-        ].join('')
-      );
+      softSet(app.options.fingerprint, 'prepend', prepend);
 
       if (app.env !== 'production') {
         softSet(app.options.fingerprint, 'customHash', null);

@@ -32,14 +32,31 @@ test('#included with RAILS_ENV in development', function() {
   var appWithPrepend = {
     options: {
       fingerprint: {
-        prepend: 'foo',
+        prepend: 'example.com/',
       }
     }
   };
 
   Addon.included(appWithPrepend);
 
-  equal(appWithPrepend.options.fingerprint.prepend, 'foo', 'can be overridden');
+  equal(appWithPrepend.options.fingerprint.prepend, 'example.com/', 'can be overridden');
+
+  var appWithAddonConfig = {
+    name: 'test-app',
+    options: {
+      'ember-cli-rails': {
+        prepend: 'https://example.com',
+      }
+    }
+  };
+
+  Addon.included(appWithAddonConfig);
+
+  equal(
+    appWithAddonConfig.options.fingerprint.prepend,
+    'https://example.com/assets/test-app/',
+    'asset host can be configured'
+  );
 });
 
 test('#included with RAILS_ENV in production', function() {

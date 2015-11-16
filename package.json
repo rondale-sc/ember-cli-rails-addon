@@ -13,7 +13,8 @@
   "author": "Jonathan Jackson",
   "license": "ISC",
   "dependencies": {
-    "fs-extra": "^0.26.0"
+    "fs-extra": "^0.26.0",
+    "url-join": "0.0.1"
   },
   "devDependencies": {
     "qunit": "^0.7.7"
