@@ -46,6 +46,7 @@ test('#included with RAILS_ENV in development', function() {
     options: {
       'ember-cli-rails': {
         prepend: 'https://example.com',
+        prefix: '/staging/assets',
       }
     }
   };
@@ -54,7 +55,7 @@ test('#included with RAILS_ENV in development', function() {
 
   equal(
     appWithAddonConfig.options.fingerprint.prepend,
-    'https://example.com/assets/test-app/',
+    'https://example.com/staging/assets/test-app/',
     'asset host can be configured'
   );
 });

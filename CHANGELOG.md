@@ -1,6 +1,9 @@
 master
 ------
 
+* Introduce `prefix` configuration which corresponds to Rails'
+  [`config.assets.prefix`][prefix]. To match Rails, it defaults to `assets`.
+
 0.5.1
 -----
 

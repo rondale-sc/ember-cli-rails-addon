@@ -24,6 +24,10 @@ This addon is responsible for:
   EmberCLI-generated assets. For an app named `frontend`, with `prepend` set
   to `https://example.com`, the resulting URLs will be prepended with
   `https://example.com/assets/frontend`:
+* `prefix` - This value corresponds to Rails' [`config.assets.prefix`][prefix].
+  To match Rails, it defaults to `assets`.
+
+[prefix]: http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
 
 ```js
 // ember-cli-build.js
@@ -32,6 +36,7 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     'ember-cli-rails': {
       prepend: 'https://example.com',
+      prefix: EmberApp.env() + '/assets',
     }
   });
 

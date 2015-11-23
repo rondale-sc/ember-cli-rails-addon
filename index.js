@@ -37,8 +37,9 @@ module.exports = {
     var addonOptions = app.options['ember-cli-rails'];
 
     if (app.env !== 'test' && typeof process.env.RAILS_ENV !== 'undefined') {
+      var prefix = addonOptions.prefix || 'assets';
       var assetHostWithProtocol = addonOptions.prepend || '';
-      var prepend = urlJoin(assetHostWithProtocol, 'assets', app.name);
+      var prepend = urlJoin(assetHostWithProtocol, prefix, app.name);
 
       if (prepend.slice(-1) !== '/') {
         prepend += '/';
