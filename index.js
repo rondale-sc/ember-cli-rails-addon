@@ -46,6 +46,7 @@ module.exports = {
       }
 
       softSet(app.options.fingerprint, 'enabled', true);
+      softSet(app.options.fingerprint, 'generateRailsManifest', true);
       softSet(app.options.fingerprint, 'prepend', prepend);
 
       if (app.env !== 'production') {

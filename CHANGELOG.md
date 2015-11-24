@@ -1,8 +1,11 @@
 master
 ------
 
+* Generate a Rails-compatible asset manifest file. [#23]
 * Introduce `prefix` configuration which corresponds to Rails'
   [`config.assets.prefix`][prefix]. To match Rails, it defaults to `assets`.
+
+[#23]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/23
 
 0.5.1
 -----
