@@ -1,6 +1,9 @@
 master
 ------
 
+0.5.2
+-----
+
 * Generate a Rails-compatible asset manifest file. [#23]
 * Introduce `prefix` configuration which corresponds to Rails'
   [`config.assets.prefix`][prefix]. To match Rails, it defaults to `assets`.
