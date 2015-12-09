@@ -32,27 +32,8 @@ module.exports = {
 
   included: function(app) {
     app.options.storeConfigInMeta = false;
-    softSet(app.options, 'fingerprint', {});
-    softSet(app.options, 'ember-cli-rails', {});
-    var addonOptions = app.options['ember-cli-rails'];
-
-    if (app.env !== 'test' && typeof process.env.RAILS_ENV !== 'undefined') {
-      var prefix = addonOptions.prefix || 'assets';
-      var assetHostWithProtocol = addonOptions.prepend || '';
-      var prepend = urlJoin(assetHostWithProtocol, prefix, app.name);
-
-      if (prepend.slice(-1) !== '/') {
-        prepend += '/';
-      }
-
-      softSet(app.options.fingerprint, 'enabled', true);
-      softSet(app.options.fingerprint, 'generateRailsManifest', true);
-      softSet(app.options.fingerprint, 'prepend', prepend);
-
-      if (app.env !== 'production') {
-        softSet(app.options.fingerprint, 'customHash', null);
-      }
-    }
+    app.options.fingerprint = app.options.fingerprint || {};
+    app.options.fingerprint.generateAssetMap = true;
 
     if (process.env.EXCLUDE_EMBER_ASSETS) {
       var excludeEmberAssets = process.env.EXCLUDE_EMBER_ASSETS;
