@@ -1,15 +1,5 @@
 var fs = require('fs');
-var fsExtra = require('fs-extra');
 var path = require('path');
-var urlJoin = require('url-join');
-
-function softSet(object, key, value) {
-  object = object || {};
-
-  if (typeof object[key] === 'undefined') {
-    object[key] = value;
-  }
-}
 
 module.exports = {
   name: 'ember-cli-rails-addon',
@@ -46,18 +36,15 @@ module.exports = {
       });
     }
   },
+
   preBuild: function(result) {
     var lockFile = this.lockFilePath();
     var errorFile = this.errorFilePath();
     if(!fs.existsSync(lockFile)) { fs.openSync(lockFile, 'w'); }
     if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
-  postBuild: function(result){
-    fsExtra.copySync(
-      result.directory + '/index.html',
-      result.directory + '/assets/index.html'
-    );
 
+  postBuild: function(result){
     var lockFile = this.lockFilePath();
 
     if(fs.existsSync(lockFile)) {

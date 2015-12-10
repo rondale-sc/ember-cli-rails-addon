@@ -1,6 +1,7 @@
 master
 ------
 
+* Remove dependency on `url-join` and `fs-extra` packages.
 * Simplify inclusion logic thanks to removal of sprockets. [#25]
 
 [#25]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/25
