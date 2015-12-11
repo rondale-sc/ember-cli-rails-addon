@@ -3,6 +3,7 @@ var path = require('path');
 
 module.exports = {
   name: 'ember-cli-rails-addon',
+
   warnMissingDependencyChecker: function() {
     var dependencies = this.project.dependencies();
 
@@ -14,10 +15,6 @@ module.exports = {
   init: function() {
     this.warnMissingDependencyChecker();
     this.ensureTmp();
-  },
-
-  buildError: function(error) {
-    fs.writeFileSync(this.errorFilePath(), error.stack)
   },
 
   included: function(app) {
@@ -39,9 +36,7 @@ module.exports = {
 
   preBuild: function(result) {
     var lockFile = this.lockFilePath();
-    var errorFile = this.errorFilePath();
     if(!fs.existsSync(lockFile)) { fs.openSync(lockFile, 'w'); }
-    if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
 
   postBuild: function(result){
@@ -58,13 +53,12 @@ module.exports = {
       fs.mkdirSync(dir);
     }
   },
+
   tmpDir: function() {
     return path.join(process.cwd(), 'tmp');
   },
+
   lockFilePath: function() {
     return path.join(this.tmpDir(), 'build.lock');
-  },
-  errorFilePath: function() {
-    return path.join(this.tmpDir(), 'error.txt');
   }
 };
