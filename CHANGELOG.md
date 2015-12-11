@@ -1,6 +1,7 @@
 master
 ------
 
+* Wait until [outputReady] hook to remove lockfile.
 * Remove dependency on `url-join` and `fs-extra` packages.
 * Simplify inclusion logic thanks to removal of sprockets. [#25]
 

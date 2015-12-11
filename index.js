@@ -44,7 +44,7 @@ module.exports = {
     if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
   },
 
-  postBuild: function(result){
+  outputReady: function(result){
     var lockFile = this.lockFilePath();
 
     if(fs.existsSync(lockFile)) {
