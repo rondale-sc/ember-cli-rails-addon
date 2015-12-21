@@ -3,16 +3,8 @@ var path = require('path');
 
 module.exports = {
   name: 'ember-cli-rails-addon',
-  warnMissingDependencyChecker: function() {
-    var dependencies = this.project.dependencies();
-
-    if (!dependencies['ember-cli-dependency-checker']) {
-      console.warn('Usage of "ember-cli-dependency-checker" is strongly advised to ensure your project cache is in sync with the project\'s requirements.');
-    }
-  },
 
   init: function() {
-    this.warnMissingDependencyChecker();
     this.ensureTmp();
   },
 
@@ -40,8 +32,14 @@ module.exports = {
   preBuild: function(result) {
     var lockFile = this.lockFilePath();
     var errorFile = this.errorFilePath();
-    if(!fs.existsSync(lockFile)) { fs.openSync(lockFile, 'w'); }
-    if(fs.existsSync(errorFile)) { fs.unlinkSync(errorFile); }
+
+    if(!fs.existsSync(lockFile)) {
+      fs.openSync(lockFile, 'w');
+    }
+
+    if(fs.existsSync(errorFile)) {
+      fs.unlinkSync(errorFile);
+    }
   },
 
   outputReady: function(result){
@@ -54,16 +52,20 @@ module.exports = {
 
   ensureTmp: function() {
     var dir = this.tmpDir();
+
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
     }
   },
+
   tmpDir: function() {
     return path.join(process.cwd(), 'tmp');
   },
+
   lockFilePath: function() {
     return path.join(this.tmpDir(), 'build.lock');
   },
+
   errorFilePath: function() {
     return path.join(this.tmpDir(), 'error.txt');
   }
