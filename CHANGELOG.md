@@ -1,6 +1,9 @@
 master
 ------
 
+0.7.0
+-----
+
 * No longer warn if `ember-cli-dependency-checker` is missing. [#29]
 
 [#29]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/29
