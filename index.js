@@ -5,7 +5,7 @@ module.exports = {
   name: 'ember-cli-rails-addon',
 
   init: function() {
-    this._super(...arguments);
+    this._super.apply(this, arguments);
     this.ensureTmp();
   },
 
