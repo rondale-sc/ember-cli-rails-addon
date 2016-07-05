@@ -1,6 +1,13 @@
 master
 ------
 
+0.7.1
+-----
+
+* Fix `this._super.init` deprecation warning. [#32]
+
+[#32]: https://github.com/rondale-sc/ember-cli-rails-addon/pull/32
+
 0.7.0
 -----
 
