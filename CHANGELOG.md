@@ -1,10 +1,10 @@
 master
 ------
 
-0.8.3
+0.8.4
 -----
 
-* Bump version for the release of [`ember-cli-rails@0.8.3`][#477]
+* Bump version for the release of [`ember-cli-rails@0.8.4`][#477]
 
 [#477]: https://github.com/thoughtbot/ember-cli-rails/issues/477
 
